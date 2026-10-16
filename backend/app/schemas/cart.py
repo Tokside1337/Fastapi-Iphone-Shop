@@ -1,6 +1,5 @@
 from decimal import Decimal
-from pydantic import BaseModel, ConfigDict, Field
-
+from pydantic import BaseModel, ConfigDict
 
 class _CartBase(BaseModel):
     model_config = ConfigDict(

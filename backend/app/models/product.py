@@ -1,18 +1,17 @@
 from decimal import Decimal
-from sqlalchemy import ForeignKey, func, Numeric
-from sqlalchemy.orm import relationship, Mapped, MappedColumn
+from sqlalchemy import ForeignKey, Numeric
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from backend.app.database import Base
-from backend.app.models import Category
 
 
 class Product(Base):
     __tablename__ = "products"
 
-    id: Mapped[int] = MappedColumn( primary_key=True,index=True)
-    name: Mapped[str] = MappedColumn( unique=True, nullable=False, index = True)
+    id: Mapped[int] = mapped_column( primary_key=True,index=True)
+    name: Mapped[str] = mapped_column( unique=True, nullable=False, index = True)
     description: Mapped[str | None]
-    price: Mapped[Decimal] = MappedColumn(Numeric(10,2))
-    category_id = MappedColumn(ForeignKey("categories.id"),nullable=False)
+    price: Mapped[Decimal] = mapped_column(Numeric(10,2))
+    category_id: Mapped[int] = mapped_column(ForeignKey("categories.id"),nullable=False)
     image_url: Mapped[str | None]
 
     category: Mapped["Category"] = relationship(back_populates="products")

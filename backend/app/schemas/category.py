@@ -1,9 +1,4 @@
-from decimal import Decimal
-
 from pydantic import BaseModel, ConfigDict
-
-from backend.app.models import Category
-
 
 class _CategoryBase(BaseModel):
     model_config = ConfigDict(
